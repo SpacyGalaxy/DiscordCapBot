@@ -4,24 +4,25 @@ from dotenv import load_dotenv
 from discord.ext import commands
 
 
-client = discord.Client()
-load_dotenv()
+bot = commands.Bot(command_prefix='=')
+
+@bot.command()
+async def hello(ctx):
+    await ctx.reply('Hello!')
+
 TOKEN = os.getenv('TOKEN')
 
-@client.event
-async def on_ready():
-    print("I'm in")
-    print(client.user)
-
-@client.event
+@bot.event
 async def on_message(message):
     
-    role = message.guild.get_role(982749129031708723)
-    if message.author != client.user and role in message.author.roles:
-        emoji = '\N{BILLED CAP}'
-        await message.add_reaction(emoji)
-
-#@client.event
-#async def on_bruh(message)
-
-client.run(TOKEN)
+    if message.author.id != bot.user.id:
+    
+        role = discord.utils.get(message.guild.roles,name="capper")
+        if role in message.author.roles:
+            emoji = '\N{BILLED CAP}'
+            await message.add_reaction(emoji)
+        else: 
+            #await message.channel.send("Nice you not capping")
+            return
+        #discord.utils.get(guild.roles,name="capper")
+bot.run(TOKEN)
