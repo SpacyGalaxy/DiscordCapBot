@@ -10,7 +10,7 @@ bot = commands.Bot(command_prefix='=')
 async def hello(ctx):
     await ctx.reply('Hello!')
 
-TOKEN = os.getenv('TOKEN')
+# TOKEN = os.getenv('TOKEN')
 
 @bot.event
 async def on_message(message):
