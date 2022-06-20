@@ -36,7 +36,7 @@ async def servers(ctx):
 async def hello(ctx):
     await ctx.reply('Hello!')
 
-TOKEN = os.getenv('TOKEN')
+TOKEN = os.environ('TOKEN')
 
 
 bot.run(TOKEN) #bot token
